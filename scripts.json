@@ -4,7 +4,7 @@
     {
       "name": "DoorSystem",
       "path": "scripts/DoorSystem.lua",
-      "type": "ModuleScript",
+      "type": "Script",
       "location": "ReplicatedStorage"
     }
   ]
