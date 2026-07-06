@@ -6,6 +6,36 @@
       "path": "scripts/DoorSystem.lua",
       "type": "Script",
       "location": "ReplicatedStorage"
+    },
+    {
+      "name": "SimpleGUI",
+      "path": "scripts/SimpleGUI.lua",
+      "type": "Script",
+      "location": "ReplicatedStorage"
+    },
+    {
+      "name": "LeaderboardStats",
+      "path": "scripts/LeaderboardStats.lua",
+      "type": "Script",
+      "location": "ReplicatedStorage"
+    },
+    {
+      "name": "ChatCommands",
+      "path": "scripts/ChatCommands.lua",
+      "type": "Script",
+      "location": "ReplicatedStorage"
+    },
+    {
+      "name": "ParticleEffects",
+      "path": "scripts/ParticleEffects.lua",
+      "type": "Script",
+      "location": "ReplicatedStorage"
+    },
+    {
+      "name": "TeleportSystem",
+      "path": "scripts/TeleportSystem.lua",
+      "type": "Script",
+      "location": "ReplicatedStorage"
     }
   ]
 }
