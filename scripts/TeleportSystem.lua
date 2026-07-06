@@ -1,8 +1,6 @@
--- Simple Teleport System
 print("=== Teleport System Starting ===")
 
 local Players = game:GetService("Players")
-local TeleportService = game:GetService("TeleportService")
 
 local teleportLocations = {
     {name = "Spawn", position = Vector3.new(0, 5, 0)},
@@ -12,23 +10,36 @@ local teleportLocations = {
 
 local function onPlayerChatted(player, message)
     local lowerMessage = message:lower()
-    
+
     for _, location in ipairs(teleportLocations) do
         if lowerMessage == "!tp " .. location.name:lower() then
-            local character = player.Character
-            if character and character:FindFirstChild("HumanoidRootPart") then
-                character.HumanoidRootPart.CFrame = CFrame.new(location.position)
+            local character = player.Character or player.CharacterAdded:Wait()
+
+            local hrp = character:FindFirstChild("HumanoidRootPart")
+            if hrp then
+                hrp.CFrame = CFrame.new(location.position)
                 print("Teleported " .. player.Name .. " to " .. location.name)
             end
+
             break
         end
     end
 end
 
-Players.PlayerAdded:Connect(function(player)
+local function setupPlayer(player)
     player.Chatted:Connect(function(message)
+        print("Chat received:", player.Name, message)
         onPlayerChatted(player, message)
     end)
-end)
+
+    print("Connected:", player.Name)
+end
+
+Players.PlayerAdded:Connect(setupPlayer)
+
+-- Existing players
+for _, player in ipairs(Players:GetPlayers()) do
+    setupPlayer(player)
+end
 
 print("=== Teleport System Running ===")
