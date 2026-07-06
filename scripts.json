@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "scripts": [
+    {
+      "name": "WeaponSystem",
+      "path": "scripts/WeaponSystem.lua",
+      "type": "ModuleScript",
+      "location": "ServerScriptService"
+    },
+    {
+      "name": "ConfigLoader",
+      "path": "scripts/ConfigLoader.lua",
+      "type": "ModuleScript",
+      "location": "ReplicatedStorage"
+    }
+  ]
+}
