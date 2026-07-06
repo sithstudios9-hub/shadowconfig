@@ -2,8 +2,8 @@
   "version": "1.0",
   "scripts": [
     {
-      "name": "WeaponSystem",
-      "path": "scripts/WeaponSystem-v2.lua",
+      "name": "DoorSystem",
+      "path": "scripts/DoorSystem.lua",
       "type": "ModuleScript",
       "location": "ReplicatedStorage"
     }
