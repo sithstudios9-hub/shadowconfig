@@ -1,25 +1,11 @@
--- ===== CLEANUP =====
-local SCRIPT_NAME = "ShadowConfigGUI"
-
-_G.Versions = _G.Versions or {}
-_G.Versions[SCRIPT_NAME] = (_G.Versions[SCRIPT_NAME] or 0) + 1
-local myVersion = _G.Versions[SCRIPT_NAME]
--- ===================
-
 print("=== ShadowConfig GUI Starting ===")
 
 local Players = game:GetService("Players")
 
-local connections = {}
-
 local function createGUI(player)
-	if _G.Versions[SCRIPT_NAME] ~= myVersion then
-		return
-	end
-
 	local playerGui = player:WaitForChild("PlayerGui")
 
-	-- Remove previous GUI
+	-- Remove previous GUI if it exists
 	local oldGui = playerGui:FindFirstChild("ShadowConfigGUI")
 	if oldGui then
 		oldGui:Destroy()
@@ -63,6 +49,7 @@ local function createGUI(player)
 	stroke.Thickness = 2
 	stroke.Parent = frame
 
+	-- Red Accent Bar
 	local accent = Instance.new("Frame")
 	accent.Size = UDim2.new(0, 5, 1, 0)
 	accent.BackgroundColor3 = Color3.fromRGB(220, 40, 40)
@@ -73,6 +60,7 @@ local function createGUI(player)
 	accentCorner.CornerRadius = UDim.new(0, 12)
 	accentCorner.Parent = accent
 
+	-- Title
 	local title = Instance.new("TextLabel")
 	title.BackgroundTransparency = 1
 	title.Position = UDim2.new(0, 18, 0, 10)
@@ -84,6 +72,7 @@ local function createGUI(player)
 	title.TextXAlignment = Enum.TextXAlignment.Left
 	title.Parent = frame
 
+	-- Subtitle
 	local subtitle = Instance.new("TextLabel")
 	subtitle.BackgroundTransparency = 1
 	subtitle.Position = UDim2.new(0, 18, 0, 42)
@@ -100,26 +89,11 @@ local function createGUI(player)
 	print("GUI created for", player.Name)
 end
 
-table.insert(connections, Players.PlayerAdded:Connect(createGUI))
+Players.PlayerAdded:Connect(createGUI)
 
 -- Existing players
 for _, player in ipairs(Players:GetPlayers()) do
 	createGUI(player)
 end
-
--- Cleanup event connections when replaced
-task.spawn(function()
-	while _G.Versions[SCRIPT_NAME] == myVersion do
-		task.wait(0.5)
-	end
-
-	for _, connection in ipairs(connections) do
-		if connection.Connected then
-			connection:Disconnect()
-		end
-	end
-
-	print("[" .. SCRIPT_NAME .. "] Cleaned up")
-end)
 
 print("=== ShadowConfig GUI Running ===")
