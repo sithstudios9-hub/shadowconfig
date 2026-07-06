@@ -36,6 +36,18 @@
       "path": "scripts/TeleportSystem.lua",
       "type": "Script",
       "location": "ServerScriptService"
+    },
+    {
+      "name": "SignConfig",
+      "path": "scripts/SignConfig.lua",
+      "type": "ModuleScript",
+      "location": "ReplicatedStorage"
+    },
+    {
+      "name": "WelcomeSign",
+      "path": "scripts/WelcomeSign.lua",
+      "type": "Script",
+      "location": "ServerScriptService"
     }
   ]
 }
