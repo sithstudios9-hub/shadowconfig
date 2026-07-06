@@ -1,11 +1,3 @@
--- ===== CLEANUP =====
-local SCRIPT_NAME = "ClientUI"
-
-_G.Versions = _G.Versions or {}
-_G.Versions[SCRIPT_NAME] = (_G.Versions[SCRIPT_NAME] or 0) + 1
-local myVersion = _G.Versions[SCRIPT_NAME]
--- ===================
-
 print("=== Client UI Script Loaded ===")
 
 local Players = game:GetService("Players")
@@ -16,15 +8,10 @@ local playerGui = player:WaitForChild("PlayerGui")
 
 local DamageEvent = ReplicatedStorage:WaitForChild("PlayerDamage")
 
--- Remove previous GUI
+-- Remove previous GUI if it exists
 local oldGui = playerGui:FindFirstChild("DamageCounter")
 if oldGui then
 	oldGui:Destroy()
-end
-
--- Stop immediately if a newer version loaded
-if _G.Versions[SCRIPT_NAME] ~= myVersion then
-	return
 end
 
 -- Create GUI
@@ -47,7 +34,7 @@ damageLabel.Parent = screenGui
 local totalDamage = 0
 
 task.spawn(function()
-	while _G.Versions[SCRIPT_NAME] == myVersion do
+	while true do
 		task.wait(2)
 
 		local damage = math.random(10, 50)
@@ -56,13 +43,6 @@ task.spawn(function()
 
 		DamageEvent:FireServer(damage)
 	end
-
-	-- Cleanup when replaced
-	if screenGui then
-		screenGui:Destroy()
-	end
-
-	print("[" .. SCRIPT_NAME .. "] Stopped")
 end)
 
 print("=== Client UI Script Initialized ===")
