@@ -1,4 +1,5 @@
 {
-EventDoubleXP = false,
-XPRate = 30
+  "WeaponDamage": 55,
+  "IsDoubleXPActive": true,
+  "WelcomeMessage": "Welcome to Saber Arena!"
 }
