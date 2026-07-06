@@ -1,16 +1,37 @@
--- scripts/ClientUI.lua
+-- ===== CLEANUP =====
+local SCRIPT_NAME = "ClientUI"
+
+_G.Versions = _G.Versions or {}
+_G.Versions[SCRIPT_NAME] = (_G.Versions[SCRIPT_NAME] or 0) + 1
+local myVersion = _G.Versions[SCRIPT_NAME]
+-- ===================
+
 print("=== Client UI Script Loaded ===")
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
 local DamageEvent = ReplicatedStorage:WaitForChild("PlayerDamage")
 
--- Create a simple GUI
+-- Remove previous GUI
+local oldGui = playerGui:FindFirstChild("DamageCounter")
+if oldGui then
+	oldGui:Destroy()
+end
+
+-- Stop immediately if a newer version loaded
+if _G.Versions[SCRIPT_NAME] ~= myVersion then
+	return
+end
+
+-- Create GUI
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "DamageCounter"
-screenGui.Parent = player.PlayerGui
+screenGui.ResetOnSpawn = false
+screenGui.Parent = playerGui
 
 local damageLabel = Instance.new("TextLabel")
 damageLabel.Name = "DamageLabel"
@@ -25,15 +46,23 @@ damageLabel.Parent = screenGui
 
 local totalDamage = 0
 
--- Simulate dealing damage
 task.spawn(function()
-    while true do
-        task.wait(2)
-        local damage = math.random(10, 50)
-        totalDamage = totalDamage + damage
-        damageLabel.Text = "Damage: " .. totalDamage
-        DamageEvent:FireServer(damage)
-    end
+	while _G.Versions[SCRIPT_NAME] == myVersion do
+		task.wait(2)
+
+		local damage = math.random(10, 50)
+		totalDamage += damage
+		damageLabel.Text = "Damage: " .. totalDamage
+
+		DamageEvent:FireServer(damage)
+	end
+
+	-- Cleanup when replaced
+	if screenGui then
+		screenGui:Destroy()
+	end
+
+	print("[" .. SCRIPT_NAME .. "] Stopped")
 end)
 
 print("=== Client UI Script Initialized ===")
