@@ -5,13 +5,19 @@
       "name": "WeaponSystem",
       "path": "scripts/WeaponSystem.lua",
       "type": "ModuleScript",
+      "location": "ReplicatedStorage"
+    },
+    {
+      "name": "GameServer",
+      "path": "scripts/GameServer.lua",
+      "type": "Script",
       "location": "ServerScriptService"
     },
     {
-      "name": "ConfigLoader",
-      "path": "scripts/ConfigLoader.lua",
-      "type": "ModuleScript",
-      "location": "ReplicatedStorage"
+      "name": "ClientUI",
+      "path": "scripts/ClientUI.lua",
+      "type": "LocalScript",
+      "location": "StarterPlayerScripts"
     }
   ]
 }
