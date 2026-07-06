@@ -3,12 +3,12 @@ local TweenService = game:GetService("TweenService")
 
 local doorPart = Instance.new("Part")
 doorPart.Name = "AutoDoor"
-doorPart.Size = Vector3.new(4, 8, 1)
+doorPart.Size = Vector3.new(10, 10, 1)
 doorPart.Position = Vector3.new(0, 4, 10)
 doorPart.Anchored = true
 doorPart.Parent = workspace
 
-local openPos = doorPart.Position + Vector3.new(0, 10, 0)
+local openPos = doorPart.Position + Vector3.new(0, 30, 0)
 local closePos = doorPart.Position
 
 task.spawn(function()
