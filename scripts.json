@@ -3,7 +3,7 @@
   "scripts": [
     {
       "name": "WeaponSystem",
-      "path": "scripts/WeaponSystem.lua",
+      "path": "scripts/WeaponSystem-v2.lua",
       "type": "ModuleScript",
       "location": "ReplicatedStorage"
     }
