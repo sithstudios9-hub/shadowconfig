@@ -1,51 +1,31 @@
 -- scripts/DoorSystem.lua
-print("=== Door System Starting ===")
-
 local TweenService = game:GetService("TweenService")
 
--- Create door part
+-- ===== CLEANUP =====
+local SCRIPT_NAME = "AutoDoor"
+local old = workspace:FindFirstChild(SCRIPT_NAME)
+if old then old:Destroy() end
+_G.Versions = _G.Versions or {}
+_G.Versions[SCRIPT_NAME] = (_G.Versions[SCRIPT_NAME] or 0) + 1
+local myVersion = _G.Versions[SCRIPT_NAME]
+-- ===================
+
 local doorPart = Instance.new("Part")
-doorPart.Name = "AutoDoor"
+doorPart.Name = SCRIPT_NAME -- must match SCRIPT_NAME
 doorPart.Size = Vector3.new(4, 8, 1)
 doorPart.Position = Vector3.new(0, 4, 10)
 doorPart.Anchored = true
-doorPart.Color = Color3.fromRGB(139, 69, 19) -- Brown
 doorPart.Parent = workspace
 
-print("Door created at: " .. tostring(doorPart.Position))
+local openPos = doorPart.Position + Vector3.new(0, 10, 0)
+local closePos = doorPart.Position
 
-local openPosition = doorPart.Position + Vector3.new(0, 10, 0)
-local closePosition = doorPart.Position
-local isOpen = false
-
--- Animate door up and down automatically
 task.spawn(function()
-    while true do
-        -- Open door
-        local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-        local tween = TweenService:Create(doorPart, tweenInfo, {Position = openPosition})
-        tween:Play()
-        isOpen = true
-        print("Door opening...")
-        
-        tween.Completed:Wait()
-        print("Door opened")
-        
-        -- Wait 3 seconds
-        task.wait(3)
-        
-        -- Close door
-        local closeTween = TweenService:Create(doorPart, tweenInfo, {Position = closePosition})
-        closeTween:Play()
-        isOpen = false
-        print("Door closing...")
-        
-        closeTween.Completed:Wait()
-        print("Door closed")
-        
-        -- Wait 3 seconds
-        task.wait(3)
+    while _G.Versions[SCRIPT_NAME] == myVersion do
+        local info = TweenInfo.new(2, Enum.EasingStyle.Quad)
+        TweenService:Create(doorPart, info, {Position = openPos}):Play()
+        task.wait(5)
+        TweenService:Create(doorPart, info, {Position = closePos}):Play()
+        task.wait(5)
     end
 end)
-
-print("=== Door System Running ===")
