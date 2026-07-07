@@ -3,7 +3,7 @@ local TweenService = game:GetService("TweenService")
 
 local doorPart = Instance.new("Part")
 doorPart.Name = "AutoDoor"
-doorPart.Size = Vector3.new(2, 2, 1)
+doorPart.Size = Vector3.new(20, 20, 1)
 doorPart.Position = Vector3.new(0, 5, 10)
 doorPart.Anchored = true
 doorPart.Parent = workspace
