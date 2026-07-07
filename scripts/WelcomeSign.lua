@@ -15,6 +15,7 @@ billboard.Size = UDim2.new(0, 400, 0, 120)
 billboard.StudsOffset = Vector3.new(0, 0, 0)
 billboard.AlwaysOnTop = true
 billboard.Parent = signPart
+billboard.MaxDistance = 75
 
 local label = Instance.new("TextLabel")
 label.Size = UDim2.new(1, 0, 1, 0)
