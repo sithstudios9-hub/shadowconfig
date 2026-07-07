@@ -5,7 +5,7 @@
 local SignConfig = {}
 
 SignConfig.Text = "Welcome to the Game!"
-SignConfig.Position = Vector3.new(20, 12, 0)
+SignConfig.Position = Vector3.new(100, 12, 0)
 SignConfig.ColorCycleSeconds = 1.5
 SignConfig.Colors = {
     Color3.fromRGB(255, 70, 70),
