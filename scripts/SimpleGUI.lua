@@ -78,7 +78,7 @@ local function createGUI(player)
 	subtitle.Position = UDim2.new(0, 18, 0, 42)
 	subtitle.Size = UDim2.new(1, -25, 0, 40)
 	subtitle.Font = Enum.Font.Gotham
-	subtitle.Text = "Configuration system loaded successfully."
+	subtitle.Text = "Hello ALL, system loaded successfully."
 	subtitle.TextWrapped = true
 	subtitle.TextColor3 = Color3.fromRGB(190, 190, 190)
 	subtitle.TextSize = 14
