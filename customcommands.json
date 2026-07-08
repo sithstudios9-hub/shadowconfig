@@ -1,0 +1,18 @@
+[
+  {
+    "name": "SetLevel",
+    "description": "Set a player's level",
+    "params": {
+      "playerUsername": "PlayerName",
+      "level": "10"
+    }
+  },
+  {
+    "name": "GiveVIP",
+    "description": "Grant VIP to a player",
+    "params": {
+      "playerUsername": "PlayerName",
+      "vipTier": "premium"
+    }
+  }
+]
