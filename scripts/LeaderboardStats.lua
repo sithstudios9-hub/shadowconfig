@@ -13,10 +13,6 @@ local function setupPlayer(player)
 	leaderstats.Name = "leaderstats"
 	leaderstats.Parent = player
 
-	local coins = Instance.new("IntValue")
-	coins.Name = "Coins"
-	coins.Value = 100
-	coins.Parent = leaderstats
 
 	local level = Instance.new("IntValue")
 	level.Name = "Level"
