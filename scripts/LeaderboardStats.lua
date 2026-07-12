@@ -23,6 +23,11 @@ local function setupPlayer(player)
 	level.Value = 1
 	level.Parent = leaderstats
 
+	local xp = Instance.new("IntValue"")
+		xp.Name = "XP"
+		xp.Value = 1
+		xp.Parent = leaderstats
+
 	print("Setup leaderboard for " .. player.Name)
 end
 
