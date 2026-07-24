@@ -31,15 +31,15 @@ module.exports = {
             // Get the bot's reply message so we don't delete it
             const replyMessage = await interaction.fetchReply();
 
-            // Fetch a few extra messages in case the reply is included
+            // Ask Discord for messages strictly BEFORE the bot's reply.
+            // This guarantees the reply itself is never in the result set,
+            // so there's no filtering/ID-matching step that can go wrong.
             const messages = await interaction.channel.messages.fetch({
-                limit: Math.min(amount + 5, 100)
+                limit: amount,
+                before: replyMessage.id
             });
 
-            // Exclude the bot's reply, then cap to the requested amount
-            const messagesToDelete = messages
-                .filter(msg => msg.id !== replyMessage.id)
-                .first(amount);
+            const messagesToDelete = [...messages.values()];
 
             // Nothing to delete — don't call bulkDelete on an empty array
             if (messagesToDelete.length === 0) {
